@@ -19,6 +19,7 @@ namespace Better_049_2
                 int randnum = random.Next(0, 99);
                 if (randnum < plugin.Config.InfectionProbability)
 {
+                    ev.Target.DropItems();
                     ev.Target.SetRole(RoleType.Scp0492,lite: true);
                     ev.IsAllowed = false;
                 }
