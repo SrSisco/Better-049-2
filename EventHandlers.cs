@@ -1,8 +1,13 @@
-﻿using System;
+using System;
+using Better049_2;
+using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
+using Exiled.Events.EventArgs.Player;
 using Exiled.Events.Handlers;
-
+using PlayerRoles;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Better_049_2
 {
@@ -12,15 +17,13 @@ namespace Better_049_2
         public EventHandlers(Plugin plugin) => this.plugin = plugin;
         internal void OnDying(DyingEventArgs ev)
         {
-            if (ev.Target is null || ev.Killer is null) return;
-            if (ev.Killer.Role == RoleType.Scp0492)
+            if (ev.Player is null || ev.Attacker is null) return;
+            if (ev.Attacker.Role == RoleTypeId.Scp0492)
             {
-                Random random = new System.Random();
-                int randnum = random.Next(0, 99);
-                if (randnum < plugin.Config.InfectionProbability)
-{
-                    ev.Target.DropItems();
-                    ev.Target.SetRole(RoleType.Scp0492,lite: true);
+                if (Random.Range(0,99) < plugin.Config.InfectionProbability)
+                {
+                    ev.Player.DropItems();
+                    ev.Player.Role.Set(RoleTypeId.Scp0492, SpawnReason.ForceClass, RoleSpawnFlags.None);
                     ev.IsAllowed = false;
                 }
             }
