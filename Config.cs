@@ -1,4 +1,4 @@
-namespace Better049_2
+namespace Better_049_2
 {
     
     using Exiled.API.Interfaces;
@@ -7,10 +7,11 @@ namespace Better049_2
     public class Config : IConfig
     {
         public bool Debug { get; set; } = false;
+        
         [Description("Enable or disable the plugin.")]
         public bool IsEnabled { get; set; }
 
         [Description("Sets the probability for the player to get infected.")]
-        public int InfectionProbability { get; set; }
+        public int InfectionProbability { get; set; } = 100;
     }
 }

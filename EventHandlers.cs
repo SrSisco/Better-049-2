@@ -1,5 +1,4 @@
 using System;
-using Better049_2;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs;
@@ -18,7 +17,7 @@ namespace Better_049_2
         internal void OnDying(DyingEventArgs ev)
         {
             if (ev.Player is null || ev.Attacker is null) return;
-            if (ev.Attacker.Role == RoleTypeId.Scp0492)
+            if (ev.Attacker.Role.Type == RoleTypeId.Scp0492)
             {
                 if (Random.Range(0,99) < plugin.Config.InfectionProbability)
                 {
